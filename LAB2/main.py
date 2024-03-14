@@ -377,54 +377,98 @@ Extend the previous Python program to write the output to a file and perform ope
 input_numbers = input("Enter a series of space-separated integers: ")
 
 # Convert Input
+numbers_list = [int(x) for x in input_numbers.split()]
 
 # Manipulate List
+numbers_list.append(10)
 
 # Attempt to Modify Tuple (this will raise an error)
+numbers_tuple = tuple(numbers_list)
+try:
+    numbers_tuple[0] = 10
+except TypeError as e:
+    print("Tuples are immutable and cannot be modified.", e)
 
 # Set Operations
+numbers_set = set(numbers_list)
+set_union = numbers_set.union({10, 11, 12})
+set_intersection = numbers_set.intersection({1, 2, 3, 5})
+set_difference = numbers_set.difference({1, 2})
 
 # Dictionary Operations
+numbers_dict = {n: n**2 for n in numbers_list}
+numbers_dict[11] = 121
 
 # Type Conversion
 
-student_number = input("Enter your student number: ")
+list_to_tuple = tuple(numbers_list)
+list_to_set = set(numbers_list)
+list_to_dict = {n: n**2 for n in numbers_list}
+tuple_to_list = list(numbers_tuple)
+tuple_to_set = set(numbers_tuple)
+tuple_to_dict = {n: n**2 for n in numbers_tuple}
+set_to_list = list(numbers_set)
+set_to_tuple = tuple(numbers_set)
+set_to_dict = {n: n**2 for n in numbers_set}
+dict_to_list = list(numbers_dict.items())
+dict_to_tuple = tuple(numbers_dict.items())
+dict_to_set = set(numbers_dict.keys())
 
 # Write Output to File like this:
-    "Student Number: " + student_number
+    student_number = input("Enter your student number: ")
+with open("output.txt", "w") as file:
+    content = (
+        f"Student Number: {student_number}\n"
+        f"Original List: {numbers_list}\n"
+        f"Original Tuple: {numbers_tuple}\n"
+        f"Original Set: {numbers_set}\n"
+        f"Original Dictionary: {numbers_dict}\n"
+        f"Manipulated List: {numbers_list}\n"
+        f"Union of Set: {set_union}\n"
+        f"Intersection of Set: {set_intersection}\n"
+        f"Difference of Set: {set_difference}\n"
+        f"Updated Dictionary: {numbers_dict}\n"
+        f"List to Tuple: {list_to_tuple}\n"
+        f"List to Set: {list_to_set}\n"
+        f"List to Dictionary: {list_to_dict}\n"
+        f"Tuple to List: {tuple_to_list}\n"
+        f"Tuple to Set: {tuple_to_set}\n"
+        f"Tuple to Dictionary: {tuple_to_dict}\n"
+        f"Set to List: {set_to_list}\n"
+        f"Set to Tuple: {set_to_tuple}\n"
+        f"Set to Dictionary: {set_to_dict}\n"
+        f"Dictionary to List: {dict_to_list}\n"
+        f"Dictionary to Tuple: {dict_to_tuple}\n"
+        f"Dictionary to Set: {dict_to_set}\n"
+    )
+    file.write(content)
 
-    "Original List: " + str(numbers_list)
-    "Original Tuple: " + str(numbers_tuple)
-    "Original Set: " + str(numbers_set)
-    "Original Dictionary: " + str(numbers_dict)
-
-    "Manipulated List: " + str(numbers_list)
-    "Manipulated Tuple: " + str(numbers_tuple)
-    "Union of Set: " + str(set_union)
-    "Intersection of Set: " + str(set_intersection)
-    "Difference of Set: " + str(set_difference)
-    "Updated Dictionary: " + str(numbers_dict)
-
-    "List to Tuple: " + str(list_to_tuple)
-    "List to Set: " + str(list_to_set)
-    "List to Dictionary: " + str(list_to_dict)
-    "Tuple to List: " + str(tuple_to_list)
-    "Tuple to Set: " + str(tuple_to_set)
-    "Tuple to Dictionary: " + str(tuple_to_dict)
-    "Set to List: " + str(set_to_list)
-    "Set to Tuple: " + str(set_to_tuple)
-    "Set to Dictionary: " + str(set_to_dict)
-    "Dictionary to List: " + str(dict_to_list)
-    "Dictionary to Tuple: " + str(dict_to_tuple)
-    "Dictionary to Set: " + str(dict_to_set)
+print("Content of the file written successfully.")
 
 # print "Content of the file:"
 
 # Perform Operations on File:
-#   Count the number of lines in the file
-#   Count the number of integers in the file
-#   Add all integers in the file (sum).
-#   Modify the content of the file
+line_count = 0
+integer_count = 0
+total_sum = 0
+
+with open("output.txt", "r") as file:
+    for line in file:
+        line_count += 1
+        words = line.split()
+        for word in words:
+            if word.isdigit():
+                integer_count += 1
+                total_sum += int(word)
+
+print(f"Number of lines in the file: {line_count}")
+print(f"Number of integers in the file: {integer_count}")
+print(f"Sum of all integers found in the file: {total_sum}")
+
+with open("output.txt", "a") as file:
+    file.write("\nAdditional analysis can be performed based on the requirements.\n")
+
+print("File content has been modified to include additional analysis.")
 
 """--------------------------------------------------------------------------------
 **Control Statements:**
