@@ -203,15 +203,23 @@ Additionally, introduce sets and dictionaries and perform basic operations on th
 input_numbers = input("Enter a series of space-separated integers: ")
 
 # Convert Input
+numbers_list = list(map(int, input_numbers.split()))
+numbers_tuple = tuple(numbers_list)
+
 
 # Manipulate List
 # Append 10 to the list
 # Insert 20 at index 2
 # Remove the element 8
+numbers_list.append(10)
+numbers_list.insert(2, 20)
+if 8 in numbers_list:
+    numbers_list.remove(8)
 
 # Attempt to Modify Tuple (this will raise an error)
 try:
     # Append 10 to the tuple
+    numbers_tuple.append(10)
 except AttributeError:
     print("Tuples are immutable and cannot be modified.")
 
@@ -219,11 +227,18 @@ except AttributeError:
 # Union
 # Intersection
 # Difference
+numbers_set = set(numbers_list)
+set_union = numbers_set.union({10, 11, 12})
+set_intersection = numbers_set.intersection({5, 8, 10})
+set_difference = numbers_set.difference({2, 9})
+
 
 # Dictionary Operations
-print("Original Dictionary:", numbers_dict)
-# Add a new key-value pair
-# Delete an existing key-value pair
+numbers_dict = {num: num ** 2 for num in numbers_list}
+numbers_dict[11] = 121
+if 2 in numbers_dict:
+    del numbers_dict[2]
+
 
 # Print Output
 print("Modified list:", numbers_list)
