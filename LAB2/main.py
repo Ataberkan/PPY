@@ -291,33 +291,49 @@ print("Updated Dictionary:", numbers_dict)
 
 # Input
 input_numbers = input("Enter a series of space-separated integers: ")
+numbers_list = [int(x) for x in input_numbers.split()]
 
 # Convert Input
-
+numbers_tuple = tuple(numbers_list)
+numbers_set = set(numbers_list)
+numbers_dict = {n: n**2 for n in numbers_list}
 # Manipulate List
+numbers_list.append(10)
+numbers_list.remove(numbers_list[0])
 
 # Attempt to Modify Tuple (this will raise an error)
+numbers_tuple = tuple(numbers_list)
+try:
+    numbers_tuple[0] = 10
+except TypeError as e:
+    print(e)
 
 # Set Operations
+numbers_set = set(numbers_list)
+numbers_set.add(20)
+if 20 in numbers_set:
+    numbers_set.remove(20)
 
 # Dictionary Operations
+numbers_dict = {n: n**2 for n in numbers_list}
 print("Original Dictionary:", numbers_dict)
 # Add a new key-value pair
-# Delete an existing key-value pair
+numbers_dict[11] = 121
+del numbers_dict[11]
 
 # Type Conversion
-# list_to_tuple =
-# list_to_set =
-# list_to_dict =
-# tuple_to_list =
-# tuple_to_set =
-# tuple_to_dict =
-# set_to_list =
-# set_to_tuple =
-# set_to_dict =
-# dict_to_list =
-# dict_to_tuple =
-# dict_to_set =
+list_to_tuple = tuple(numbers_list)
+list_to_set = set(numbers_list)
+list_to_dict = {n: n**2 for n in numbers_list}
+tuple_to_list = list(numbers_tuple)
+tuple_to_set = set(numbers_tuple)
+tuple_to_dict = {n: n**2 for n in numbers_tuple}
+set_to_list = list(numbers_set)
+set_to_tuple = tuple(numbers_set)
+set_to_dict = {n: n**2 for n in numbers_set}
+dict_to_list = list(numbers_dict.keys())
+dict_to_tuple = tuple(numbers_dict.keys())
+dict_to_set = set(numbers_dict.keys())
 
 # Print Output
 print("List to Tuple:", list_to_tuple)
