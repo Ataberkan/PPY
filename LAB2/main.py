@@ -415,7 +415,7 @@ dict_to_tuple = tuple(numbers_dict.items())
 dict_to_set = set(numbers_dict.keys())
 
 # Write Output to File like this:
-    student_number = input("Enter your student number: ")
+student_number = input("Enter your student number: ")
 with open("output.txt", "w") as file:
     content = (
         f"Student Number: {student_number}\n"
