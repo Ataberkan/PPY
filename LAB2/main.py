@@ -529,6 +529,53 @@ These are fundamental constructs in Python programming that enable you to contro
 """
 
 
+def is_prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+
+def find_largest_integer_in_file(filename):
+    largest = None
+    with open(filename, "r") as file:
+        for line in file:
+            for word in line.split():
+                if word.isdigit():
+                    num = int(word)
+                    if largest is None or num > largest:
+                        largest = num
+    return largest
+
+
+def generate_prime_numbers(n):
+    return [x for x in range(2, n + 1) if is_prime(x)]
+
+
+largest_integer = find_largest_integer_in_file("output.txt")
+if largest_integer is not None:
+    prime_numbers = generate_prime_numbers(largest_integer)
+
+    print("List of prime numbers:", prime_numbers)
+
+    sum_of_primes = sum(prime_numbers)
+
+    largest_prime = prime_numbers[-1]
+    smallest_prime = prime_numbers[0]
+
+    is_largest_integer_prime = is_prime(largest_integer)
+    print(f"The largest integer {largest_integer} is prime: {is_largest_integer_prime}")
+
+    with open("prime_numbers.txt", "w") as file:
+        file.write(f"List of prime numbers: {prime_numbers}\n")
+        file.write(f"Sum of prime numbers: {sum_of_primes}\n")
+        file.write(f"Largest prime number: {largest_prime}\n")
+        file.write(f"Smallest prime number: {smallest_prime}\n")
+        file.write(f"The largest integer {largest_integer} is prime: {is_largest_integer_prime}\n")
+else:
+    print("The largest integer cannot be found in the file.")
 
 """10.
 In the final main.py file, leave the results from task 8 and 9, commit and push
